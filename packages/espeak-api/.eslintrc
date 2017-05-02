@@ -1,0 +1,21 @@
+{
+  "extends": "rallycoding",
+  "rules": {
+    "arrow-body-style": "off",
+    "brace-style": ["error", "stroustrup"],
+    "import/no-extraneous-dependencies": [error, { devDependencies: true }],
+    "max-len": "off",
+    "no-mixed-operators": "off",
+    "object-shorthand": "off",
+    "no-prototype-builtins": "off",
+    "no-param-reassign": "off",
+    "one-var": "off",
+    "one-var-declaration-per-line": "off",
+    "padded-blocks": "off",
+    "react/jsx-first-prop-new-line": "off",
+    "react/sort-comp": "off"
+  },
+  "env": {
+    "browser": true
+  }
+}
