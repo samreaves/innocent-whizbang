@@ -7,4 +7,14 @@
 version: "2"
 
 # Services to come soon
-#services:
+services:
+  espeak-api:
+    image: samreaves/espeak-test:0.0.2
+
+    # Mount volume of local files
+    volumes:
+      - "./voice-files:/src/voice-files"
+
+    # Map machines port 80 with container's 3000
+    ports:
+      - "80:3000"
