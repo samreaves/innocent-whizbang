@@ -5,7 +5,7 @@ FROM mhart/alpine-node:7.9.0
 MAINTAINER Sam Reaves & Donald Gary
 
 # Install espeak
-RUN apk add espeak -y
+RUN apk add --update espeak
 
 # On container start, build src directory inside
 RUN mkdir /src

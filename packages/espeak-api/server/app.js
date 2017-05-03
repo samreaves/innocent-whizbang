@@ -13,6 +13,7 @@ const espeak     = require('espeak'),
       path       = require('path'),
       bodyParser = require('body-parser'),
       cors       = require('cors'),
+      stream     = require('stream'),
       app        = module.exports.app = exports.app = express(),
       server     = app.listen(3000, () => {
 
@@ -49,11 +50,21 @@ app.post('/', (request, response) => {
       response.status(500).send('Server error');
     }
 
+    console.info(wav.buffer.length);
+
     response.set({
       'Content-Type': 'audio/wav',
+      'Content-Length': wav.buffer.length,
     });
 
-    response.status(200).send(new Buffer(wav.buffer, 'binary'));
+    // Initiate the source
+    const bufferStream = new stream.PassThrough();
+
+    // Write your buffer
+    bufferStream.end(wav.buffer);
+
+    // Pipe it to something else
+    bufferStream.pipe(response);
   });
 });
 
