@@ -7,7 +7,6 @@
  */
 
  // Import Express and initialize server.
-// import { spawn } from 'child_process';
 const espeak     = require('espeak'),
       express    = require('express'),
       path       = require('path'),
@@ -50,11 +49,10 @@ app.post('/', (request, response) => {
       response.status(500).send('Server error');
     }
 
-    console.info(wav.buffer.length);
-
     response.set({
       'Content-Type': 'audio/wav',
       'Content-Length': wav.buffer.length,
+      'Content-disposition': 'attachment; filename=hello.wav'
     });
 
     // Initiate the source
