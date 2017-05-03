@@ -6,10 +6,10 @@
 
 version: "2"
 
-# Services to come soon
 services:
   espeak-api:
-    image: samreaves/espeak-test:0.0.2
+    build: ./packages/espeak-api
+    #image: samreaves/espeak-test:0.0.4
 
     # Mount volume of local files
     volumes:

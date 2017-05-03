@@ -9,6 +9,7 @@
  // Import Express and initialize server.
 const espeak     = require('espeak'),
       express    = require('express'),
+      fs         = require('fs'),
       path       = require('path'),
       bodyParser = require('body-parser'),
       cors       = require('cors'),
@@ -52,16 +53,19 @@ app.post('/', (request, response) => {
     response.set({
       'Content-Type': 'audio/wav',
       'Content-Length': wav.buffer.length,
-      'Content-disposition': 'attachment; filename=hello.wav'
+      'Content-disposition': 'attachment; filename=message.wav'
     });
 
-    // Initiate the source
+    // Initiate passthrough stream from wav buffer
     const bufferStream = new stream.PassThrough();
 
-    // Write your buffer
+    // Write buffer
     bufferStream.end(wav.buffer);
 
-    // Pipe it to something else
+    /* Pipe to file system as written wav file */
+    bufferStream.pipe(fs.createWriteStream(path.join(__dirname, '../voice-files/message.wav')));
+
+    // Pipe to browser as download
     bufferStream.pipe(response);
   });
 });
