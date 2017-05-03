@@ -7,6 +7,7 @@
     "max-len": "off",
     "no-mixed-operators": "off",
     "object-shorthand": "off",
+    "no-multi-spaces": "off",
     "no-prototype-builtins": "off",
     "no-param-reassign": "off",
     "one-var": "off",
